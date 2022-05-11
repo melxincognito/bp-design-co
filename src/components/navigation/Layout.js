@@ -12,6 +12,7 @@ export default function Layout(props) {
           marginTop: "7.5rem",
           display: "grid",
           justifyContent: "center",
+          justifyItems: "center",
         }}
       >
         {props.children}
