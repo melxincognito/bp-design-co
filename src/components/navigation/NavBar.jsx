@@ -10,9 +10,12 @@ import {
   MenuItem,
   Menu,
   Container,
+  Button,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 export default function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -47,6 +50,23 @@ export default function NavBar() {
     { label: "Custom Plan Request", link: "/custom-plan-req", id: 3 },
   ];
 
+  // favorites, cart, and user account redirects
+  let navigate = useNavigate();
+
+  const loginRedirect = () => {
+    let path = `/login`;
+    navigate(path);
+  };
+
+  const userCartRedirect = () => {
+    let path = `/cart`;
+    navigate(path);
+  };
+  const userFavoritesRedirect = () => {
+    let path = `/my-favorites`;
+    navigate(path);
+  };
+
   // styles variables
 
   const tabsContainerStyles = {
@@ -54,6 +74,7 @@ export default function NavBar() {
     alignContent: "center",
     justifyContent: "center",
     display: { xs: "none", md: "flex" },
+    backgroundColor: "white",
   };
 
   return (
@@ -154,6 +175,19 @@ export default function NavBar() {
                 />
               ))}
             </Tabs>
+          </Box>
+
+          <Box display="flex" sx={{ flexGrow: 0, alignItems: "center" }}>
+            <FavoriteBorderIcon onClick={userFavoritesRedirect} />
+            <ShoppingCartOutlinedIcon onClick={userCartRedirect} />
+            <Button
+              variant="outlined"
+              sx={{ color: "white", padding: 0 }}
+              onClick={loginRedirect}
+            >
+              {" "}
+              Login
+            </Button>
           </Box>
         </Toolbar>
       </Container>
