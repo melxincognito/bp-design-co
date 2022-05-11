@@ -170,17 +170,27 @@ export default function NavBar() {
                   label={item.label}
                   component={Link}
                   to={item.link}
+                  sx={{ color: "white" }}
                 />
               ))}
             </Tabs>
           </Box>
 
-          <Box display="flex" sx={{ flexGrow: 0, alignItems: "center" }}>
-            <FavoriteBorderIcon onClick={userFavoritesRedirect} />
-            <ShoppingCartOutlinedIcon onClick={userCartRedirect} />
+          <Box
+            display="flex"
+            sx={{ flexGrow: 0, alignItems: "center", gap: 1 }}
+          >
+            <FavoriteBorderIcon
+              sx={{ cursor: "pointer" }}
+              onClick={userFavoritesRedirect}
+            />
+            <ShoppingCartOutlinedIcon
+              sx={{ cursor: "pointer" }}
+              onClick={userCartRedirect}
+            />
             <Button
-              variant="outlined"
-              sx={{ color: "white", padding: 0 }}
+              variant="contained"
+              sx={{ color: "white", padding: 0.2 }}
               onClick={loginRedirect}
             >
               {" "}
