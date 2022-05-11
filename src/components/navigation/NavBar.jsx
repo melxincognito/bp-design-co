@@ -11,11 +11,13 @@ import {
   Menu,
   Container,
   Button,
+  TextField,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { Search } from "@mui/icons-material";
 
 export default function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -71,37 +73,42 @@ export default function NavBar() {
 
   const tabsContainerStyles = {
     flexGrow: 1,
-    alignContent: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     display: { xs: "none", md: "flex" },
-    backgroundColor: "white",
   };
 
   return (
     <AppBar position="fixed">
+      {/* container stacked above the nav bar */}
       <Container
         maxWidth="xl"
         sx={{
-          p: 2,
+          p: 1,
           bgcolor: "primary.main",
-          display: { xs: "flex", md: "none" },
+          display: "flex",
         }}
       >
-        {" "}
-      </Container>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          {/* Logo for not collapsed view */}
-
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-          >
+        <Box sx={{ flexGrow: 2 }}>
+          <Typography variant="h6" noWrap component="div">
             BP DESIGN STUDIO
           </Typography>
+        </Box>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+          <TextField
+            variant="standard"
+            placeholder="Search by plan #"
+            sx={{
+              backgroundColor: "white",
+              borderRadius: 1.5,
+            }}
+          />
+          <Search />
+        </Box>
+      </Container>
 
+      {/* nav bar with actual navigation tabs & such */}
+      <Container maxWidth="xl" sx={{ backgroundColor: "primary.light" }}>
+        <Toolbar disableGutters>
           <Box
             sx={{
               flexGrow: 1,
@@ -145,15 +152,6 @@ export default function NavBar() {
             </Menu>
           </Box>
 
-          {/* logo for collapsed view */}
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-          >
-            BP DESIGN COMPANY
-          </Typography>
           {/* tabs for computer screen  */}
           <Box sx={tabsContainerStyles}>
             <Tabs
