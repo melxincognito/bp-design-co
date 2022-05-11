@@ -7,7 +7,15 @@ export default function Layout(props) {
   return (
     <ThemeProvider theme={theme}>
       <NavBar />
-      <main style={{ marginTop: "20rem" }}>{props.children}</main>
+      <main
+        style={{
+          marginTop: "7.5rem",
+          display: "grid",
+          justifyContent: "center",
+        }}
+      >
+        {props.children}
+      </main>
     </ThemeProvider>
   );
 }
